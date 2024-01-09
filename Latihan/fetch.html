@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API</title>
+    
+    
+</head>
+<body onload="getPhotos()">
+    <div class="container mt-5">
+        <div class="row" id="photo-gallery">
+        </div>
+    </div>
+
+    <script>
+        const listPhoto = document.getElementById('list-photo');
+        async function getPhotos() {
+            const photos = await fetch('https://jsonplaceholder.typicode.com/photos')
+                .then((response) => {
+                    return response.json();
+                });
+            
+                const listPhotos = photos.map((photo) => {
+                    return `<h1>${photo.title}</h1><p>${photo.body}`;
+                })
+
+                listPhoto.innerHTML = listPhotos;
+        }
+    </script>
+    
+</body>
+</html>
